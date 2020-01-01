@@ -62,13 +62,15 @@ class BoardPicture:
         top_line, bottom_line = points
         left_line, right_line = points.swapaxes(0, 1)
         center = get_center_point(points)
-        left_point = get_intersection(
-            left_line, (center, horizontal_intersection))
-        right_point = get_intersection(
-            right_line, (center, horizontal_intersection))
-        top_point = get_intersection(top_line, (center, vertical_intersection))
-        bottom_point = get_intersection(
-            bottom_line, (center, vertical_intersection))
+        horizontal_line = (center, horizontal_intersection) if horizontal_intersection is not None else (
+            center, center + top_line[1] - top_line[0])
+        vertical_line = (center, vertical_intersection) if vertical_intersection is not None else (
+            center, center + left_line[1] - left_line[0])
+        left_point = get_intersection(left_line, horizontal_line)
+        right_point = get_intersection(right_line, horizontal_line)
+        top_point = get_intersection(top_line, vertical_line)
+        bottom_point = get_intersection(bottom_line, vertical_line)
+
         return np.array([
             [points[0, 0], top_point, points[0, 1]],
             [left_point, center, right_point],

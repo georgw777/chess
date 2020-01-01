@@ -13,6 +13,8 @@ numpy = "*"
 pillow = "*"
 matplotlib = "*"
 pandas = "*"
+tensorflow = "*"
+imgaug = "*"
 
 [requires]
 python_version = "3.7"

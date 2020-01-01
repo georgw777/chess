@@ -7,6 +7,8 @@ def get_intersection(a: np.ndarray, b: np.ndarray) -> np.ndarray:
     l1 = np.cross(*points[:2])
     l2 = np.cross(*points[2:])
     x, y, z = np.cross(l1, l2)
+    if z == 0:
+        return None
     return (x/z, y/z)
 
 

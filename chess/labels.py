@@ -1,0 +1,15 @@
+LABELS = {
+    "empty": " ",
+    "black_knight": "n",
+    "black_bishop": "b",
+    "black_king": "k",
+    "black_pawn": "p",
+    "black_queen": "q",
+    "black_rook": "r",
+    "white_knight": "N",
+    "white_bishop": "B",
+    "white_king": "K",
+    "white_pawn": "P",
+    "white_queen": "Q",
+    "white_rook": "R",
+}

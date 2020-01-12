@@ -11,7 +11,8 @@ from chess.board import BoardAnnotation
 model = ChessModel()
 model.load("model.h5")
 
-IMAGE_DIR = pathlib.Path("data") / "images"
+IMAGE_DIR = pathlib.Path("data") / "images" / \
+    input("Enter dataset to use (train/val/test): ")
 
 files = list(IMAGE_DIR.glob("**/*.jpg"))
 
@@ -29,7 +30,8 @@ def print_board(board: str):
 while True:
     filename = random.choice(files)
 
-    print(f"File: {filename}")
+    print(
+        f"File: {filename} (select the four corners or close the plot to skip)")
 
     img = Image.open(filename)
     plt.imshow(img)

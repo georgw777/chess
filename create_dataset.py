@@ -66,10 +66,10 @@ def extract_images_for_dataset(input_folder: Path, output_folder: Path):
                 piece_dir, f"{file.stem}_{x}_{y}{file.suffix}"))
 
 
-# Test dataset
-print("Processing test dataset...")
-extract_images_for_dataset(DATA_DIR / "images" / "test",
-                           DATA_DIR / "pieces" / "test")
+# Validation dataset
+print("Processing validation dataset...")
+extract_images_for_dataset(DATA_DIR / "images" / "val",
+                           DATA_DIR / "pieces" / "val")
 
 # Train dataset
 print("Processing train dataset...")

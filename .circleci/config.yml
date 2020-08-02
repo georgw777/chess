@@ -7,7 +7,6 @@ orbs:
 workflows:
   main:
     jobs:
-      - poetry/build
       - poetry/shell:
           args: pylint chess/.
           requires:

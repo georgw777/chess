@@ -17,6 +17,7 @@ numpy = "<1.19.0"
 jupyterlab = "^2.2.2"
 autopep8 = "^1.5.4"
 pylint = "^2.5.3"
+pytest = "^6.0.1"
 
 [build-system]
 requires = ["poetry>=0.12"]

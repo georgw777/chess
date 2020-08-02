@@ -6,10 +6,10 @@ def reshape_points(points: tf.Tensor) -> tf.Tensor:
     # points: [..., 4, 2]
     batch_dimensions = points.shape[:-2]
     y_sorted = tf.argsort(points[..., 1])
-    points = tf.gather(points, y_sorted, batch_dims=-1)
+    points = tf.gather(points, y_sorted, batch_dims=len(batch_dimensions))
     points = tf.reshape(points, (*batch_dimensions, 2, 2, 2))
     x_sorted = tf.argsort(points[..., 0])
-    points = tf.gather(points, x_sorted, batch_dims=-1)
+    points = tf.gather(points, x_sorted, batch_dims=len(batch_dimensions)+1)
     return points
 
 

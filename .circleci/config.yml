@@ -2,7 +2,7 @@ version: 2
 
 jobs:
   build:
-    working_directory: ~/circleci-chess
+    #working_directory: ~/circleci-chess
     docker:
       - image: circleci/python:3.8
     steps:
@@ -21,7 +21,8 @@ jobs:
             - "venv"
       - run:
           command: |
-            poetry run pytest
+            mkdir test-results
+            poetry run pytest --junitxml=test-results/junit.xml
       - store_test_results:
           path: test-results
       - store_artifacts:

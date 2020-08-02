@@ -1,18 +1,29 @@
 version: 2.1
 
-orbs:
-  python: circleci/python@0.2.1
-  poetry: frameio/poetry@0.15.0
-
-workflows:
-  ci:
-    jobs:
-      - poetry/build
-      - poetry/shell:
-          args: pylint chess/.
-          requires:
-            - poetry/build
-      - poetry/shell:
-          args: pytest
-          requires:
-            - poetry/build
+jobs:
+  build:
+    working_directory: ~/circleci-chess
+    docker:
+      - image: circleci/python:3.8
+    steps:
+      - checkout
+      - run- run: sudo chown -R circleci:circleci /usr/local/bin
+      - run: sudo chown -R circleci:circleci /usr/local/lib/python3.8/site-packages
+      - restore_cache:
+          key: deps9-{{ .Branch }}-{{ checksum "poetry.lock" }}
+      - run:
+          command: |
+            sudo pip install poetry
+            poetry install
+      - save_cache:
+          key: deps9-{{ .Branch }}-{{ checksum "poetry.lock" }}
+          paths:
+            - "venv"
+      - run:
+          command: |
+            poetry run pytest
+      - store_test_results:
+          path: test-results
+      - store_artifacts:
+          path: test-results
+          destination: tr1

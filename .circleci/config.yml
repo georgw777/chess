@@ -1,0 +1,18 @@
+version: 2.1
+
+orbs:
+  python: circleci/python@0.2.1
+  poetry: frameio/poetry@0.15.0
+
+workflows:
+  main:
+    jobs:
+      - poetry/build
+      - poetry/shell:
+        args: pylint chess/.
+        requires:
+          - poetry/build
+      - poetry/shell:
+        args: pytest
+        requires:
+          - poetry/build

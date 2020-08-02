@@ -32,9 +32,22 @@ Inputs:
 Outputs:
 - for each of the 8x8 squares, a probability distribution over the 13 classes
 
+## Usage
+Install the dependencies:
+```bash
+poetry install
+./download_data.sh
+```
+
+Run the demo:
+```bash
+poetry run python demo.py
+```
+
 ## Known issues
 - Towards the back of the board, empty squares are often classified as the piece that is below them. This is because squares at the back of the board are cropped with a greater height due to the perspective.
 
 ## To do
 - Automate the detection of the four corners.
 - Use object detection instead of classification to achieve more reliable results, as this would avoid the known issue explained above.
+- Convert the output to PGN so it can be analysed directly on [lichess](http://lichess.org).

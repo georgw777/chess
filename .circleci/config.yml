@@ -9,10 +9,10 @@ workflows:
     jobs:
       - poetry/build
       - poetry/shell:
-        args: pylint chess/.
-        requires:
-          - poetry/build
+          args: pylint chess/.
+          requires:
+            - poetry/build
       - poetry/shell:
-        args: pytest
-        requires:
-          - poetry/build
+          args: pytest
+          requires:
+            - poetry/build

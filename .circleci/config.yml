@@ -5,8 +5,9 @@ orbs:
   poetry: frameio/poetry@0.15.0
 
 workflows:
-  main:
+  ci:
     jobs:
+      - poetry/build
       - poetry/shell:
           args: pylint chess/.
           requires:

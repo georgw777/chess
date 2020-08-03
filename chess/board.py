@@ -10,7 +10,7 @@ board_mask = tf.reshape(board_chars, (1, 1, *board_chars.shape))
 class BoardAnnotation:
 
     @staticmethod
-    @tf.function
+    # @tf.function
     def encode(description: tf.Tensor):
         board = tf.strings.split(description, sep="\n")
         board = tf.strings.unicode_decode(board, "UTF-8").to_tensor()
@@ -22,7 +22,7 @@ class BoardAnnotation:
         return board
 
     @staticmethod
-    @tf.function
+    # @tf.function
     def decode(board: tf.Tensor):
         # board: [..., 8, 8, len(LABELS)]
         batch_dimensions = board.shape[:-3]

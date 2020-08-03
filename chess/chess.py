@@ -4,7 +4,6 @@ import typing
 
 from .labels import LABELS
 from .preparation import reshape_points, get_squares, extend_square_heights, crop_squares
-from .board import BoardAnnotation
 
 
 class ChessModel:

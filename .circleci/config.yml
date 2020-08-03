@@ -18,7 +18,7 @@ jobs:
       - save_cache:
           key: deps9-{{ .Branch }}-{{ checksum "poetry.lock" }}
           paths:
-            - "venv"
+            - "~/.cache/pypoetry/virtualenvs"
       - run:
           command: |
             mkdir test-results

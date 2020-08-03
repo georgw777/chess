@@ -18,7 +18,7 @@ def test_encode():
                       [0, 0, 0, 0, 0, 0, 0, 0],
                       [0, 0, 0, 0, 0, 0, 0, 0],
                       [0, 0, 0, 0, 0, 0, 0, 0]])
-    annotation = tf.constant(annotation)
+    annotation = tf.constant(annotation.encode("utf-8"))
     encoded = BoardAnnotation.encode(annotation)
     np.testing.assert_equal(tf.argmax(encoded, axis=-1), board)
 

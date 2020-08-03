@@ -14,10 +14,12 @@ class BoardAnnotation:
     def encode(description: tf.Tensor):
         board = tf.strings.split(description, sep="\n")
         board = tf.strings.unicode_decode(board, "UTF-8").to_tensor()
-        board = tf.concat(
-            [board, tf.fill((8 - board.shape[0], board.shape[1]), board_chars[0])], axis=0)
-        board = tf.concat(
-            [board, tf.fill((board.shape[0], 8 - board.shape[1]), board_chars[0])], axis=1)
+        board_shape = tf.shape(board)
+        board = tf.concat([board, tf.fill((8 - board_shape[0], board_shape[1]), board_chars[0])],
+                          axis=0)
+        board_shape = tf.shape(board)
+        board = tf.concat([board, tf.fill((board_shape[0], 8 - board_shape[1]), board_chars[0])],
+                          axis=1)
         board = board_mask == tf.expand_dims(board, axis=-1)
         return board
 

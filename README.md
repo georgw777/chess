@@ -45,6 +45,11 @@ Run the demo:
 poetry run python demo.py
 ```
 
+Run tests:
+```bash
+poetry run pytest
+```
+
 ## Known issues
 - Towards the back of the board, empty squares are often classified as the piece that is below them. This is because squares at the back of the board are cropped with a greater height due to the perspective.
 

@@ -1,6 +1,8 @@
 import numpy as np
 import logging
 import tensorflow as tf
+from pathlib import Path
+import json
 
 from chess.labels import LABELS
 
@@ -66,3 +68,24 @@ class Sample:
                 }
             )
         )
+
+
+def create_tf_dataset(export_dir: Path, dataset_file: Path):
+    with (export_dir / "chess-export.json").open("r") as f:
+        data = json.load(f)
+
+    with tf.io.TFRecordWriter(str(dataset_file)) as f:
+        for asset in data["assets"].values():
+            name = asset["asset"]["name"]
+            try:
+                with (export_dir / name).open("rb") as img:
+                    sample = Sample(img.read(), asset)
+            except InvalidAnnotationException as e:
+                logger.warning(f"Skipping {name}: {e!s}")
+                continue
+            f.write(sample.generate_example().SerializeToString())
+
+
+if __name__ == "__main__":
+    export_dir = Path("chess_data") / "labels" / "vott-json-export"
+    create_tf_dataset(export_dir, export_dir / "dataset.tfrecord")

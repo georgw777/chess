@@ -11,7 +11,7 @@ class BoardAnnotation:
 
     @staticmethod
     @tf.function
-    def encode(description: tf.Tensor):
+    def encode(description: tf.Tensor) -> tf.Tensor:
         board = tf.strings.split(description, sep="\n")
         board = tf.strings.unicode_decode(board, "UTF-8").to_tensor()
         board_shape = tf.shape(board)
@@ -25,7 +25,7 @@ class BoardAnnotation:
 
     @staticmethod
     @tf.function
-    def decode(board: tf.Tensor):
+    def decode(board: tf.Tensor) -> tf.Tensor:
         # board: [..., 8, 8, len(LABELS)]
         batch_dimensions = board.shape[:-3]
         description = tf.argmax(board, axis=-1)

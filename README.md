@@ -54,6 +54,6 @@ poetry run pytest
 - Towards the back of the board, empty squares are often classified as the piece that is below them. This is because squares at the back of the board are cropped with a greater height due to the perspective.
 
 ## To do
+- Use object detection instead of classification to achieve more reliable results, as this would avoid the known issue explained above (under development in the [`feature/object-detection`](tree/feature/object-detection) branch).
 - Automate the detection of the four corners using a multi-headed model.
-- Use object detection instead of classification to achieve more reliable results, as this would avoid the known issue explained above.
 - Convert the output to PGN so it can be analysed directly on [lichess](http://lichess.org).

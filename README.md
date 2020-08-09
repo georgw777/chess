@@ -37,7 +37,12 @@ Outputs:
 Install the dependencies:
 ```bash
 poetry install
+```
+
+Download the dataset (optional because this repository contains pretrained models):
+```bash
 ./download_data.sh
+poetry run python -m chess.tfrecord
 ```
 
 Run the demo:

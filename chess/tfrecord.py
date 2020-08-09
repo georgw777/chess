@@ -91,5 +91,13 @@ def create_tf_dataset(export_dir: Path, dataset_file: Path):
 
 
 if __name__ == "__main__":
-    export_dir = Path("chess_data") / "labels" / "vott-json-export"
-    create_tf_dataset(export_dir, export_dir / "dataset.tfrecord")
+    import argparse
+
+    parser = argparse.ArgumentParser()
+    default_export_dir = Path("chess_data") / "labels" / "vott-json-export"
+    parser.add_argument("--export-dir", help="Export directory",
+                        type=str, default=str(default_export_dir))
+    parser.add_argument("--output", help="Where to save the tfrecord file",
+                        type=str, default=str(default_export_dir / "dataset.tfrecord"))
+    args = parser.parse_args()
+    create_tf_dataset(Path(args.export_dir), Path(args.output))

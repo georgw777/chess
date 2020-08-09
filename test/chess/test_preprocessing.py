@@ -1,7 +1,7 @@
 from pathlib import Path
 import tensorflow as tf
 
-from preprocessing.sample import create_tf_dataset
+from chess.preprocessing import create_tf_dataset
 
 
 def test_export():

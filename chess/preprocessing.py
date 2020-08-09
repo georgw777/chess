@@ -1,3 +1,7 @@
+"""
+This module contains functionality for creating a tfrecord dataset from the annotated files.
+"""
+
 import numpy as np
 import logging
 import tensorflow as tf
